@@ -1,0 +1,52 @@
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS:
+#+LATEX_HEADER_EXTRA:
+#+DESCRIPTION: Don't Act Dumb
+#+KEYWORDS: algorithms design review
+#+SUBTITLE: D-don't Act Dumb
+#+LATEX_COMPILER: pdflatex
+#+TITLE: Exam Review
+#+DATE: <2019-02-27>
+#+AUTHOR: Daiwei Chen
+#+EMAIL: <redacted>
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 26.1 (Org mode 9.1.14)
+
+* God Please Don't Forget These
+  - Define Algorithm
+  - Summations, Logs, Ceiling, Floor
+  - Counting Operations
+  - Complexities ($O, \Omega, \Theta$)
+  - Divide & Conquer
+  - Greedy Algorithms
+  - Dynamic Programming
+
+* Logs
+  When it comes to CS, $\log$ always has a base of 2 unless specified otherwise.
+  Let's take a look at $\Theta(n\log n)$.
+
+** Log Identities
+   $$\log (x^y) = y\log x$$ \\
+   $$\log (xy) = \log x + \log y$$ \\
+   $$\log_b a = \frac{\log_x a}{\log_x b}$$ \\
+
+** $\log_{2742} n$ wtf why
+   $\log_{2742} n \leq c\log n \, n \geq k$ \\
+   $\frac{\log n}{\log 2742} \leq c\log n$ \\
+   $\frac{1}{\log 2742}\log n \leq c\log n \, c=\frac{1}{\log 2742}$ \\
+
+   Doing it the limit way: \\
+   $\lim_{n\to\infty}\frac{\log_{2742} n}{\log n}$ \\
+   $= \lim_{n\to\infty}\frac{\log n}{\log 2742}\frac{1}{\log n}$ \\
+   $= \lim_{n\to\infty}\frac{\log n}{\log 2742*\log n}$ \\
+   $= \frac{1}{\log2742}$ \\
+
+* Complexities
+  $\Theta(n) + \Theta(1) = \Theta(n+1) = \Theta(n)$ \\
+  $\Theta(n) + \Theta(n) = \Theta(n)$ \\
+  $\Theta(n) * \Theta(n) * \Theta(n) = \Theta(n^3)$ \\
+
+* Dynamic Programming: Optimal Substructure
+  Optimal answers to smaller problems are still applicable. For example, in the coin changing case, it's still better to use the two 6 cent pieces and not the bigger 10 cent piece.

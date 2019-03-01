@@ -1,0 +1,134 @@
+% Created 2019-03-01 Fri 12:00
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{davec}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={davec},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.1 (Org mode 9.1.14)},
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\#-\textbf{- mode: org -}-
+
+\section{Measuring Execution Time}
+\label{sec:org1cc0d1f}
+\begin{itemize}
+\item It's difficult to measure correctly.
+\item Your computer is doing too much.
+\item I/O problems.
+\item May be too fast, hard to measure correctly.
+\item Run out of memory.
+\end{itemize}
+\subsection{How to Time Correctly}
+\label{sec:orgcb4b08e}
+\begin{itemize}
+\item TIME MULTIPLE RUNS!
+\item Statistical significance: 29 or more.
+\item Use high resolution timers:
+\begin{itemize}
+\item Use the smallest measure of time possible.
+\end{itemize}
+\item Only time the important stuff.
+\end{itemize}
+\subsection{C++11 Example}
+\label{sec:orgd54d1d1}
+The following is c++11 only, it uses a high resolution timer rather than tick
+from C/C++.
+\begin{verbatim}
+double time_function()
+{
+  clock_t start, end, total;
+  start = clock();
+  for (int i=0; i<ITERS; i++)
+    function_to_time();
+  end = clock();
+  total = end - start;;
+  return (total / (float)CLOCKS_PER_SEC) / ITERS;
+}
+\end{verbatim}
+
+\subsection{Java Example}
+\label{sec:org1c70a6c}
+\begin{verbatim}
+public static float time_method()
+{
+  long start, end, total;
+  start = System.nanoTime();
+  // ITERS defined elsewhere
+  for (int i=0; i<ITERS; i++)
+    method_to_time()
+  end = System.nanoTime();
+  total = end = start;
+  return total / (float) ITERS;
+}
+\end{verbatim}
+
+\subsection{Python Example}
+\label{sec:org016d120}
+Refer to python's \href{https://docs.python.org/3.7/library/timeit.html}{Timeit Module (3.7)}.
+
+\section{Math Review}
+\label{sec:org8cbfba2}
+\subsection{FLOOR: Largest int that is <= x.}
+\label{sec:org2622206}
+\begin{itemize}
+\item floor(3.2) => 3
+\item floor(-6.7) => -7
+\end{itemize}
+\subsection{CEILING: Smallest int that is >= x.}
+\label{sec:org5e48513}
+\begin{itemize}
+\item ceil(3.2) => 4
+\item ceil(-6.7) => -6
+\end{itemize}
+\subsection{LOG}
+\label{sec:org760d679}
+\begin{itemize}
+\item Let b > 1, x > 0
+\item Logb(x) = L iff b**L = x
+\item Log10(1000) = 3
+\item Log2(8) = 3
+\item lg = log2
+\item lg(16) => 4
+\item floor(lg(10)) => 3
+\end{itemize}
+\subsection{Log identities}
+\label{sec:org97aaeb5}
+\begin{itemize}
+\item logb(1) => 0
+\item logb(b) => 1
+\item logb(x*y) => logb(x)+logb(y)
+\item logb(x/y) => logb(x)-logb(y)
+\item logb(x**g) => glogb(x)
+\item loga(x) => logb(x)/logb(a) [!]
+\end{itemize}
+\subsection{ADDITION}
+\label{sec:org7b0e463}
+\begin{itemize}
+\item 1 + 2 + 3 + \ldots{} + n => sum(1, n, i)
+\item sum(1, n, 1) => n
+\item sum(1, n, i) => n(n+1)/2
+\item sum(1, n, i*i) => [n(n+1)(2n+1)]/6
+\item sum(1, n, c**i) => (c**(i+1)-1)/(c-1) while c is not 1
+\end{itemize}
+\end{document}

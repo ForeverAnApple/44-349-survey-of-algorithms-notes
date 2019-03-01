@@ -1,0 +1,56 @@
+% Created 2019-03-01 Fri 12:00
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{davec}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={davec},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.1 (Org mode 9.1.14)},
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\section{Big Omega}
+\label{sec:org6b9f06d}
+f(n) e BigOmega(g(n)) iff there is a c > o, k
+f(n) >= Cg(n), n >= k
+
+\subsection{Example:}
+\label{sec:org7d059ea}
+Prove \$ 3n\(^{\text{2}}\) + 2n + 8 e \(\omega\)\{n\(^{\text{2}}\)\} \$
+\$ 3n\(^{\text{2}}\) + 2n + 8 >= Cn\(^{\text{2}}\) where n >= k\$
+\$ -2n\(^{\text{2}}\)           -2n\(^{\text{2}}\) \$
+\$ n\(^{\text{2}}\) + 2n + 8 >= 0 \$ TRUE!
+
+\subsection{Another Example:}
+\label{sec:orgd649684}
+Prove \$ \frac{n^2-n}{2} e \(\omega\)\{n\(^{\text{2}}\)\} \$
+\$ \frac{n^2-n}{2} >= cn\(^{\text{2}}\) \$ c = 1/4
+n\(^{\text{2}}\) / 2 - n/2 >= n\(^{\text{2}}\) / 4
+n\(^{\text{2}}\) / 4 - n/2 >= 0
+n\(^{\text{2}}\) / 4 >= n/2
+n >= 2
+
+\section{Big O}
+\label{sec:org8cdaa3c}
+f(n) e BigO(g(n)) iff there is a c > o, k
+f(n) <= Cg(n), n >= k
+\end{document}

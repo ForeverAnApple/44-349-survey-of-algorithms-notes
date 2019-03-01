@@ -1,0 +1,21 @@
+* Big Omega
+  f(n) e BigOmega(g(n)) iff there is a c > o, k
+  f(n) >= Cg(n), n >= k
+
+** Example:
+   Prove $ 3n^2 + 2n + 8 e \omega{n^2} $
+   $ 3n^2 + 2n + 8 >= Cn^2 where n >= k$
+   $ -2n^2           -2n^2 $
+   $ n^2 + 2n + 8 >= 0 $ TRUE!
+
+** Another Example:
+   Prove $ \frac{n^2-n}{2} e \omega{n^2} $
+   $ \frac{n^2-n}{2} >= cn^2 $ c = 1/4
+   n^2 / 2 - n/2 >= n^2 / 4
+   n^2 / 4 - n/2 >= 0
+   n^2 / 4 >= n/2
+   n >= 2
+
+* Big O
+  f(n) e BigO(g(n)) iff there is a c > o, k
+  f(n) <= Cg(n), n >= k

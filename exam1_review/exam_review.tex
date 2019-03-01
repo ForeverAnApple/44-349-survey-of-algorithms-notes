@@ -1,0 +1,78 @@
+% Created 2019-03-01 Fri 12:00
+% Intended LaTeX compiler: pdflatex
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Daiwei Chen}
+\date{\textit{<2019-02-27 Wed>}}
+\title{Exam Review\\\medskip
+\large D-don't Act Dumb}
+\hypersetup{
+ pdfauthor={Daiwei Chen},
+ pdftitle={Exam Review},
+ pdfkeywords={algorithms design review},
+ pdfsubject={Don't Act Dumb},
+ pdfcreator={Emacs 26.1 (Org mode 9.1.14)},
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{God Please Don't Forget These}
+\label{sec:org5751d31}
+\begin{itemize}
+\item Define Algorithm
+\item Summations, Logs, Ceiling, Floor
+\item Counting Operations
+\item Complexities (\(O, \Omega, \Theta\))
+\item Divide \& Conquer
+\item Greedy Algorithms
+\item Dynamic Programming
+\end{itemize}
+
+\section{Logs}
+\label{sec:org89b7e30}
+When it comes to CS, \(\log\) always has a base of 2 unless specified otherwise.
+Let's take a look at \(\Theta(n\log n)\).
+
+\subsection{Log Identities}
+\label{sec:org6e1880d}
+$$\log (x^y) = y\log x$$ \\
+$$\log (xy) = \log x + \log y$$ \\
+$$\log_b a = \frac{\log_x a}{\log_x b}$$ \\
+
+\subsection{\(\log_{2742} n\) wtf why}
+\label{sec:orgd2d8991}
+\(\log_{2742} n \leq c\log n \, n \geq k\) \\
+\(\frac{\log n}{\log 2742} \leq c\log n\) \\
+\(\frac{1}{\log 2742}\log n \leq c\log n \, c=\frac{1}{\log 2742}\) \\
+
+Doing it the limit way: \\
+\(\lim_{n\to\infty}\frac{\log_{2742} n}{\log n}\) \\
+\(= \lim_{n\to\infty}\frac{\log n}{\log 2742}\frac{1}{\log n}\) \\
+\(= \lim_{n\to\infty}\frac{\log n}{\log 2742*\log n}\) \\
+\(= \frac{1}{\log2742}\) \\
+
+\section{Complexities}
+\label{sec:orgf8be4fb}
+\(\Theta(n) + \Theta(1) = \Theta(n+1) = \Theta(n)\) \\
+\(\Theta(n) + \Theta(n) = \Theta(n)\) \\
+\(\Theta(n) * \Theta(n) * \Theta(n) = \Theta(n^3)\) \\
+
+\section{Dynamic Programming: Optimal Substructure}
+\label{sec:orgf0eaf70}
+Optimal answers to smaller problems are still applicable. For example, in the coin changing case, it's still better to use the two 6 cent pieces and not the bigger 10 cent piece.
+\end{document}

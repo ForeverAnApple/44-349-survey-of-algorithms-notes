@@ -1,0 +1,175 @@
+% Created 2019-03-01 Fri 11:59
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{davec}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={davec},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.1 (Org mode 9.1.14)},
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\section{Analyzing recursive algorithms}
+\label{sec:org9d38492}
+
+\begin{verbatim}
+def sum(l:List):
+    if len(l) == 1:
+        return l[0]
+    else:
+        return l[0] + sum(l[1:])
+\end{verbatim}
+
+I want to analyze this algo, what do?
+\begin{itemize}
+\item Count operations to reduce problem size
+\item Count operations to solve sub-problem
+\end{itemize}
+
+\subsection{Recurrence Relation}
+\label{sec:org5ca0cac}
+\begin{equation}
+  \begin{align}
+   A(n) &:: \textnormal{Number of additions required to sum a list of length n} \\
+   A(1) &= 0 --- \textsf{Base Case} \\
+   A(n) &= 1 + A(n-1) \\
+   A(2) &= 1 + A(1) = 1 \\
+   A(3) &= 1 + A(2) = 2 \\
+   A(n) &= n-1 \\
+  \end{align}
+\end{equation}
+
+\noindent\rule{\textwidth}{0.5pt}
+\begin{equation}
+  \begin{align}
+   A(n) &= 1 + A(n-1) \\
+        &= 1 + (1 + A(n-2)) = 2 + A(n-2) \\
+        &= 2 + (1 + A(n-3)) = 3 + A(n-3) \\
+        &... \\
+        &= n - 1 + A(1) :: A(1) = 0 \\
+        &= n - 1 \\
+  \end{align}
+\end{equation}
+
+\begin{verbatim}
+# For the sake of complexity, log(len(l), 2) is a whole number
+def min(l:List):
+    if len(l) == 1:
+        return l[0]
+    m1 = min(l[:n/2])
+    m2 = min(l[n/2:])
+    if m1 < m2:
+        return m1
+    return m2
+\end{verbatim}
+
+C(n) = \# of comparisons to find the min of a list of size n
+C(0) = 0
+C(n) = 1 + C(n/2) + C(n/2) = 2C(n/2) + 1
+
+\section{Master Theorem}
+\label{sec:org40055db}
+\textbf{Insert Master Theorem Here}
+\begin{equation}
+  \begin{align}
+T(n) &= 2T(n/2) + n \\
+    &<= cn/2\log(n/2) + n \\
+    &=  cn\logn - cn\log2 + n \\
+    &=  cn\logn - cn + n \\
+    &<= cn\logn \\
+  \end{align}
+\end{equation}
+
+Recurrence of the form: \$ T(n)=aT(n/b)+O(f(n)) \$
+
+\begin{equation}
+  \begin{align}
+\textsf{Case:} 	&f(n)=O(…)	T(n)=O(…) \\
+&n\log_ba−ε	n\log_ba \\
+&n\log_ba	\logn×n\log_ba \\
+&n\log_ba+ε and ∃c,af(n/b)≤cf(n)	f(n) \\
+  \end{align}
+\end{equation}
+
+\newpage
+\today
+\section{Divide \& Conquer}
+\label{sec:org73d0ee8}
+\begin{itemize}
+\item Break the problem down and solve smaller problems
+\item Combine small solutions to form the bigger solution
+\item Ask yourself: Is solving problems and combining better?
+\begin{itemize}
+\item Recursion is not free.
+\end{itemize}
+\item Do keep in mind: Getting a solution is better than no solution. As long as it's "fast enough".
+\end{itemize}
+
+\section{Greedy Solutions}
+\label{sec:org3bcfd4c}
+\begin{itemize}
+\item Dr. Eloe: "This is the YOLO approach to algorithms, don't look back."
+\item Short-term gain over long term benefit.
+\item Build the solution one step at a time.
+\item At each step, choose the most beneficial choice.
+\begin{description}
+\item[{Locally optimal}] For that specific step.
+\end{description}
+\end{itemize}
+\subsection{Example - Real life}
+\label{sec:orge8e3b80}
+You've got to head to GS after Colden Hall, but it's cold as \textbf{f u c k}. So let's building hop in order to get some warmth. With each step, let's choose the closest building.
+\begin{enumerate}
+\item Union
+\item Admin Building
+\item GS
+\end{enumerate}
+\subsection{Example - Algorithm}
+\label{sec:orgc5e66f7}
+\begin{description}
+\item[{Coin changing}] Given a list of denominations, what is the smallest \# of coins I can dispense for a given amount of change?
+\item denoms = [50, 25, 10, 5, 1] \\
+A = 70 \\
+Start with 50, then 2 dimes.
+\end{description}
+
+\begin{verbatim}
+# Denominations is always sorted, and you always have a penny
+def giveChange (A:int):
+    d = 0 # index of our current coin.
+    while A > 0:
+        c = A // denoms[d] # integer division in python 3
+        print(c, "@", denoms[d])
+        A -= c*denoms[d]
+        d += 1
+\end{verbatim}
+
+\begin{itemize}
+\item O(n) on average, since you may have to check every single denomination
+\item[{A = 18}] gives 10, 5, 3x1s
+\item However if you have \\
+denoms = [10, 6, 1] and \\
+A = 12, you get back 3 coins, the optimal answer is 2
+\item[{Greedy Heuristic}] It's an algorithm applied to optimization where you may not get the most optimal answer, but you'll still get an \emph{okay} answer.
+\item The question is, is it worth it to spend all this time to get the most optimal solution or something just "good enough". And in certain cases, the optimal solution is very impractical.
+\end{itemize}
+\end{document}
