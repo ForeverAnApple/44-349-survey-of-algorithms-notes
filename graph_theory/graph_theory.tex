@@ -1,0 +1,79 @@
+% Created 2019-03-06 Wed 11:48
+% Intended LaTeX compiler: pdflatex
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Daiwei Chen}
+\date{\textit{<2019-03-06 Wed>}}
+\title{Graph Theory \emph{lite}\\\medskip
+\large What am I looking at?}
+\hypersetup{
+ pdfauthor={Daiwei Chen},
+ pdftitle={Graph Theory \emph{lite}},
+ pdfkeywords={algorithms graph theory},
+ pdfsubject={But it's slow yo},
+ pdfcreator={Emacs 26.1 (Org mode 9.1.14)},
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+
+\section{Graph Theory \emph{lite}}
+\label{sec:org317bf39}
+When you would like to model problems with "complex" relationships.
+\begin{description}
+\item[{Flights}] Catching flights and changing planes.
+\item[{Internet Routing}] The internet is a giant graph. Figuring out the number of hops and which hops to take in order to get to your final destination.
+\item[{Circuit Boards}] Making sure connections are efficient.
+\end{description}
+
+Basically, things that are connected to each other. A Graph Consists of a set of \textbf{vertices} and \textbf{nodes} that are \emph{connected} by \uline{edges}.\\
+Tools: Python - Networkx, c/c++ - nauty.
+Assumptions:\\
+\begin{itemize}
+\item No Self Loops
+\item Edges are Unique
+\end{itemize}
+
+\subsection{Paths}
+\label{sec:orgd6c0096}
+\begin{description}
+\item[{Path}] List of vertices \(l\) such that \((l[i], l[i+1]) \epsilon E\).\\
+On each small step of a path, the 2 nodes much have an edge between them.
+\item[{Simple Path}] Path without repeated vertices.
+\item[{Cycle}] A (mostly) simple path but the \(1^{st}\) and last vertices are the same. Only the beginning and end are repeated.
+\item[{Path Length}] The number of edges in a path.
+\end{description}
+
+\subsection{Graphs}
+\label{sec:org5728db8}
+\begin{description}
+\item[{Acyclic Graph}] A graph without \textbf{ANY} cycles.
+\item[{Connected Graph}] A graph in which for some a there is an a path from every vertex to every vertex.
+\item[{Tree}] Connected acyclic graph.
+\begin{itemize}
+\item \(|v| -1\) edges.
+\end{itemize}
+\end{description}
+
+\subsection{Subgraphs}
+\label{sec:orgc42a832}
+\begin{description}
+\item[{Subgraph}] Only contains verticies and edges of the original graph. Edges must have 2 end-points.
+\item[{Spanning Tree}] A subgraph of G that contains all nodes in G and is a tree.
+\end{description}
+\end{document}
