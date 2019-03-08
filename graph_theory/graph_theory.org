@@ -43,3 +43,45 @@
 ** Subgraphs
    - Subgraph :: Only contains verticies and edges of the original graph. Edges must have 2 end-points.
    - Spanning Tree :: A subgraph of G that contains all nodes in G and is a tree.
+* Keeping Track of Graphs
+  These 2 are not the only two styles of graph representations. There are many, many more and more specialized representations for the correct use case.
+** Adjacency List
+   Just a list, for example:
+   | A | -> | B, C, D |
+   | B | -> | A, C, E |
+   | C | -> | A, B    |
+   | D | -> | A, E    |
+   | E | -> | B, D    |
+
+** Adjacency Matrix
+   Shows if one node is connected to another.
+   |   | A | B | C | D | E |
+   | A | 0 | 1 | 1 | 1 | 0 |
+   | B | 1 | 0 | 1 | 0 | 1 |
+   | C | 1 | 1 | 0 | 0 | 0 |
+   | D | 1 | 0 | 0 | 0 | 1 |
+   | E | 0 | 1 | 0 | 1 | 0 |
+
+* Weighted Graphs
+  Just a graph, but the edges has been assigned a value. For example, on a switch, different physical connections could have a weight of how much bandwidth each one gets?
+
+* Minimal Spanning Tree
+  You want to find the spanning tree where the total weight is the smallest.
+
+* Prim's Algorithm
+  A minimal spanning tree algorithm.
+  #+BEGIN_SRC python
+    def prims(V:set, E:set):
+        tree_vertex_set = {V[random(len(V))]} # The vertex starts with ANY vert we want to start with.
+        tree_edge_set = {}
+
+        for i=1..len(V)-1:
+            # This very much depends on the way you're storing your edges
+            find the minimal edge $e_m$ = ($u_m$, $V_m$) such that $u_m \epsilon$ tree_vertex_set and $V_m !\epsilon$ tree_vertex_set
+            tree_edge_set.add($e_m)
+            tree_vertex_set.add($V_m)
+
+        return tree_edge_set
+  #+END_SRC
+
+  The way that this algorithm works, is that on each run of every vertex, you always find the minimum edge from the starting point, and move on to the next one. Then you do the same until you run out of verticies.
