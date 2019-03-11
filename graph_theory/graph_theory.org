@@ -85,3 +85,12 @@
   #+END_SRC
 
   The way that this algorithm works, is that on each run of every vertex, you always find the minimum edge from the starting point, and move on to the next one. Then you do the same until you run out of verticies.
+  \\
+  Let's look at the complexity for prim's algorithm. It's fairly hard to say what the possible complexity for prim's algorithm is looking like because the finding the minimal edge depending on your algorithm for that and how the data is represented.\\
+  Some examples:\\
+  - Prim's (Adjacency Matrix) :: $O(n^2)$
+  - Prim's (List + Binary Heap) :: $O(e \log n)$
+  - Prim's (List + Fibonacci Heap) :: $O(e + n \log n)$
+
+* Kruskal's Algorithm
+  It is going to put each vertex into its own set. Then, sort the edges on increasing weight. You start from the lowest weight, and if two vertecies are in different sets, then you combine the sets, and accept that edge. Keep combining as long as your edges are not in the same set.
