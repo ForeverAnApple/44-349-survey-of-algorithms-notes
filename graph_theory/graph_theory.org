@@ -94,3 +94,60 @@
 
 * Kruskal's Algorithm
   It is going to put each vertex into its own set. Then, sort the edges on increasing weight. You start from the lowest weight, and if two vertecies are in different sets, then you combine the sets, and accept that edge. Keep combining as long as your edges are not in the same set.
+
+  #+BEGIN_SRC python
+    def kruskals(V: set, E: set):
+        construct |V| sets, each with a unique vertex
+        sort edges by increasing weight
+        tree_edges = {}
+        for e=(u,v) in sorted edges:
+            if u & v are in different sets:
+                combine the sets
+                tree_edges.add(e)
+            if len(tree_edges) == V-1:
+                return tree_edges
+  #+END_SRC
+
+  What is the big O on this alogrithm? It is $O(e \log e)$.
+
+* Shortest Path
+  Given a weighted directed graph G. Find the shortest path from a source vertex s to a sink vertex t.
+  Notes:
+  - Negative weights edges are allowed
+  - Cycles with negative weights are NOT
+  - We will not have cycles with positive weights
+
+ #+BEGIN_SRC python
+   def initSSSP(G, s):
+       for v in G:
+           v.pi = None # the prediciser
+           v.d = Inf # best guess on distance
+
+   def relax(u, v):
+       if v.d > u.d + weight(u,v):
+           v.d = u.d + weight(u,v)
+           v.pi = u
+
+   def bellman_ford(G, s):
+       initSSSP(G, s)
+       for i in range(x): # x runs ____ times Usually, x = len(V)
+           for e = (u,v) in G: # for each edge, relax the edge.
+               relax(u,v)
+       # Detect a negative cycle
+       for e = (u,v) in G:
+           if v.d > u.d + weight(u,v): # If you can still relax after relaxing, then panic, You've relaxed too much
+               return false
+       return true
+ #+END_SRC
+
+ | u | pi   |  d |
+ | S | null |  0 |
+ | A | S    |  3 |
+ | B | A    | -1 |
+ | C | D    | -4 |
+ | D | F    | -1 |
+ | E | S    |  2 |
+ | F | E    |  5 |
+ | T | B    |  6 |
+
+ Each time you go through the loop, you'll go at the very least, by one vertex. Note: You go through the table multiple times as to keep every single value within the table updated. In later iterations of the loop, there could be changes in paths without a change in where one vertex comes from vs another. Depending on the graph, it could take up to len(V). Which is why you must check for negative cycles. However, if you've gone through the graph and there're no changes in the table, then you're done relaxing. The order that you check the edges doesn't matter too much.
