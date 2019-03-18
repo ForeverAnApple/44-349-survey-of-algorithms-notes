@@ -1,4 +1,4 @@
-% Created 2019-03-15 Fri 11:47
+% Created 2019-03-18 Mon 12:00
 % Intended LaTeX compiler: pdflatex
 \documentclass{article}
 \usepackage[utf8]{inputenc}
@@ -33,7 +33,7 @@
 
 
 \section{Graph Theory \emph{lite}}
-\label{sec:orgb691376}
+\label{sec:org97268c3}
 When you would like to model problems with "complex" relationships.
 \begin{description}
 \item[{Flights}] Catching flights and changing planes.
@@ -50,7 +50,7 @@ Assumptions:\\
 \end{itemize}
 
 \subsection{Paths}
-\label{sec:org7135b1f}
+\label{sec:orge599ebb}
 \begin{description}
 \item[{Path}] List of vertices \(l\) such that \((l[i], l[i+1]) \epsilon E\).\\
 On each small step of a path, the 2 nodes much have an edge between them.
@@ -60,7 +60,7 @@ On each small step of a path, the 2 nodes much have an edge between them.
 \end{description}
 
 \subsection{Graphs}
-\label{sec:org6025838}
+\label{sec:org2b729b5}
 \begin{description}
 \item[{Acyclic Graph}] A graph without \textbf{ANY} cycles.
 \item[{Connected Graph}] A graph in which for some a there is an a path from every vertex to every vertex.
@@ -71,16 +71,16 @@ On each small step of a path, the 2 nodes much have an edge between them.
 \end{description}
 
 \subsection{Subgraphs}
-\label{sec:orgfb0805d}
+\label{sec:org045d9ac}
 \begin{description}
 \item[{Subgraph}] Only contains verticies and edges of the original graph. Edges must have 2 end-points.
 \item[{Spanning Tree}] A subgraph of G that contains all nodes in G and is a tree.
 \end{description}
 \section{Keeping Track of Graphs}
-\label{sec:orgae53738}
+\label{sec:org140c142}
 These 2 are not the only two styles of graph representations. There are many, many more and more specialized representations for the correct use case.
 \subsection{Adjacency List}
-\label{sec:orgf4e88dd}
+\label{sec:orgfd705e2}
 Just a list, for example:
 \begin{center}
 \begin{tabular}{lll}
@@ -93,7 +93,7 @@ E & -> & B, D\\
 \end{center}
 
 \subsection{Adjacency Matrix}
-\label{sec:orgc867076}
+\label{sec:org934fddd}
 Shows if one node is connected to another.
 \begin{center}
 \begin{tabular}{lrrrrr}
@@ -107,15 +107,15 @@ E & 0 & 1 & 0 & 1 & 0\\
 \end{center}
 
 \section{Weighted Graphs}
-\label{sec:orgf53191c}
+\label{sec:orgd422326}
 Just a graph, but the edges has been assigned a value. For example, on a switch, different physical connections could have a weight of how much bandwidth each one gets?
 
 \section{Minimal Spanning Tree}
-\label{sec:orgf517b83}
+\label{sec:org825bd65}
 You want to find the spanning tree where the total weight is the smallest.
 
 \section{Prim's Algorithm}
-\label{sec:orgddaef4a}
+\label{sec:orgaf121fa}
 A minimal spanning tree algorithm.
 \begin{verbatim}
 def prims(V:set, E:set):
@@ -142,7 +142,7 @@ Some examples:\\
 \end{description}
 
 \section{Kruskal's Algorithm}
-\label{sec:orgf93aa3c}
+\label{sec:org6afc88f}
 It is going to put each vertex into its own set. Then, sort the edges on increasing weight. You start from the lowest weight, and if two vertecies are in different sets, then you combine the sets, and accept that edge. Keep combining as long as your edges are not in the same set.
 
 \begin{verbatim}
@@ -161,7 +161,7 @@ def kruskals(V: set, E: set):
 What is the big O on this alogrithm? It is \(O(e \log e)\).
 
 \section{Shortest Path}
-\label{sec:orgca876a3}
+\label{sec:orgb80b652}
 Given a weighted directed graph G. Find the shortest path from a source vertex s to a sink vertex t.
 Notes:
 \begin{itemize}
@@ -208,4 +208,39 @@ T & B & 6\\
 \end{center}
 
 Each time you go through the loop, you'll go at the very least, by one vertex. Note: You go through the table multiple times as to keep every single value within the table updated. In later iterations of the loop, there could be changes in paths without a change in where one vertex comes from vs another. Depending on the graph, it could take up to len(V). Which is why you must check for negative cycles. However, if you've gone through the graph and there're no changes in the table, then you're done relaxing. The order that you check the edges doesn't matter too much.
+Complexity-wise, this is slower than Dyxstra's algorithm, however, dyxtra does not always work on graphs with negatively weighted graphs.
+
+\section{Graph Traversal / Search}
+\label{sec:org912e2a0}
+\begin{itemize}
+\item Depth First Search (DFS)
+\item Breadth First Search (BFS)
+\end{itemize}
+\subsection{Depth First Search}
+\label{sec:orgd260f9e}
+Go down, then move to the side.
+\begin{verbatim}
+def dfs(g: Graph, s: vertex):
+    visited = set()
+    toVisit = stack()
+    toVisit.push(s)
+    while toVisit is not empty:
+        v = toVisit.pop()
+        if v not in visited:
+            visited.add(v)
+            for w in v.neighbors:
+                toVisit.push(w)
+            print(v)
+
+def rdfs(g, s):
+    if s not in visited:
+        print(s)
+        visited.add(s)
+        for w in s.neighbors:
+            rdfs(g, w)
+\end{verbatim}
+
+\subsection{Breadth First Search}
+\label{sec:org311d874}
+Search down, layer by layer. Horizontally.
 \end{document}

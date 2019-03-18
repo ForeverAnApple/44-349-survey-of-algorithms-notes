@@ -151,3 +151,33 @@
  | T | B    |  6 |
 
  Each time you go through the loop, you'll go at the very least, by one vertex. Note: You go through the table multiple times as to keep every single value within the table updated. In later iterations of the loop, there could be changes in paths without a change in where one vertex comes from vs another. Depending on the graph, it could take up to len(V). Which is why you must check for negative cycles. However, if you've gone through the graph and there're no changes in the table, then you're done relaxing. The order that you check the edges doesn't matter too much.
+ Complexity-wise, this is slower than Dyxstra's algorithm, however, dyxtra does not always work on graphs with negatively weighted graphs.
+
+* Graph Traversal / Search
+  - Depth First Search (DFS)
+  - Breadth First Search (BFS)
+** Depth First Search
+   Go down, then move to the side.
+   #+BEGIN_SRC python
+     def dfs(g: Graph, s: vertex):
+         visited = set()
+         toVisit = stack()
+         toVisit.push(s)
+         while toVisit is not empty:
+             v = toVisit.pop()
+             if v not in visited:
+                 visited.add(v)
+                 for w in v.neighbors:
+                     toVisit.push(w)
+                 print(v)
+
+     def rdfs(g, s):
+         if s not in visited:
+             print(s)
+             visited.add(s)
+             for w in s.neighbors:
+                 rdfs(g, w)
+   #+END_SRC
+
+** Breadth First Search
+   Search down, layer by layer. Horizontally.
