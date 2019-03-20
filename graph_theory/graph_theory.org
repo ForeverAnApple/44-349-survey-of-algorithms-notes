@@ -6,7 +6,7 @@
 #+SUBTITLE: What am I looking at?
 #+LATEX_COMPILER: pdflatex
 #+TITLE: Graph Theory /lite/
-#+DATE: <2019-03-06>
+#+DATE: \today
 #+AUTHOR: Daiwei Chen
 #+EMAIL: <redacted>
 #+LANGUAGE: en
@@ -157,7 +157,7 @@
   - Depth First Search (DFS)
   - Breadth First Search (BFS)
 ** Depth First Search
-   Go down, then move to the side.
+   Go down, then move to the side. Stack used.
    #+BEGIN_SRC python
      def dfs(g: Graph, s: vertex):
          visited = set()
@@ -180,4 +180,33 @@
    #+END_SRC
 
 ** Breadth First Search
-   Search down, layer by layer. Horizontally.
+   Search down, layer by layer. Horizontally. Queue used.
+
+* Sepuku
+  How many times can you stab yourself in the stomach to die instantly?
+
+* Tree Searching using Backtracking
+** N-Queens Problem
+   Place queens on a N x N board so that no queens can be threatened. How many queens can you fill up?
+   For example, you have a 4x4 board, is it possible to place 4 queens? In this case, it is ${16 \choose 4}$, which comes out to be $10 * 13 * 14$. \\
+   \\
+   Now, construct a graph where you place one queen at a time on each level. Do this until you have N queens. Within the graph you've constructed, the solution will never be on level 1. Meaning you're trying to reach the bottom of the graph as fast as computery possible.\\
+   \\
+   Upon each iteration of traversing the graph with depth first, you check if it's possible to place up to 4 queens, if not, you end that branch of the tree and move on to the next depth first search.
+
+   #+BEGIN_SRC python
+     # The board is what the board looks like, the col is the depth of our board.
+     def nQueens(board: [][], col:int):
+         if col >= len(board):
+             return True
+         for row in 0..numRows - 1:
+             if board[row][col] is not threatened:
+                 board[row][col] = queen;
+                 if nQueens(board, col+1):
+                     return true
+                 board[row][col] = empty
+
+         return false
+   #+END_SRC
+
+* Graph Sorting
