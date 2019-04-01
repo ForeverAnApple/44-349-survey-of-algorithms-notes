@@ -1,4 +1,4 @@
-% Created 2019-03-20 Wed 11:47
+% Created 2019-04-01 Mon 11:37
 % Intended LaTeX compiler: pdflatex
 \documentclass{article}
 \usepackage[utf8]{inputenc}
@@ -23,7 +23,7 @@
  pdftitle={Graph Theory \emph{lite}},
  pdfkeywords={algorithms graph theory},
  pdfsubject={But it's slow yo},
- pdfcreator={Emacs 26.1 (Org mode 9.1.14)},
+ pdfcreator={Emacs 26.1 (Org mode 9.1.14)}, 
  pdflang={English}}
 \begin{document}
 
@@ -33,7 +33,7 @@
 
 
 \section{Graph Theory \emph{lite}}
-\label{sec:org3425057}
+\label{sec:org0bd8ba0}
 When you would like to model problems with "complex" relationships.
 \begin{description}
 \item[{Flights}] Catching flights and changing planes.
@@ -50,7 +50,7 @@ Assumptions:\\
 \end{itemize}
 
 \subsection{Paths}
-\label{sec:org28d4eec}
+\label{sec:org9562dde}
 \begin{description}
 \item[{Path}] List of vertices \(l\) such that \((l[i], l[i+1]) \epsilon E\).\\
 On each small step of a path, the 2 nodes much have an edge between them.
@@ -60,7 +60,7 @@ On each small step of a path, the 2 nodes much have an edge between them.
 \end{description}
 
 \subsection{Graphs}
-\label{sec:orgf47b3d3}
+\label{sec:orgd568150}
 \begin{description}
 \item[{Acyclic Graph}] A graph without \textbf{ANY} cycles.
 \item[{Connected Graph}] A graph in which for some a there is an a path from every vertex to every vertex.
@@ -71,16 +71,16 @@ On each small step of a path, the 2 nodes much have an edge between them.
 \end{description}
 
 \subsection{Subgraphs}
-\label{sec:org46bfde1}
+\label{sec:org34c8f3f}
 \begin{description}
 \item[{Subgraph}] Only contains verticies and edges of the original graph. Edges must have 2 end-points.
 \item[{Spanning Tree}] A subgraph of G that contains all nodes in G and is a tree.
 \end{description}
 \section{Keeping Track of Graphs}
-\label{sec:org885635e}
+\label{sec:org58f3b8d}
 These 2 are not the only two styles of graph representations. There are many, many more and more specialized representations for the correct use case.
 \subsection{Adjacency List}
-\label{sec:orgda22bd1}
+\label{sec:orge518e33}
 Just a list, for example:
 \begin{center}
 \begin{tabular}{lll}
@@ -93,7 +93,7 @@ E & -> & B, D\\
 \end{center}
 
 \subsection{Adjacency Matrix}
-\label{sec:org39ca855}
+\label{sec:org2b6fc5f}
 Shows if one node is connected to another.
 \begin{center}
 \begin{tabular}{lrrrrr}
@@ -107,15 +107,15 @@ E & 0 & 1 & 0 & 1 & 0\\
 \end{center}
 
 \section{Weighted Graphs}
-\label{sec:orga5ceefa}
+\label{sec:org5272a3b}
 Just a graph, but the edges has been assigned a value. For example, on a switch, different physical connections could have a weight of how much bandwidth each one gets?
 
 \section{Minimal Spanning Tree}
-\label{sec:org7dfccd0}
+\label{sec:org67615e0}
 You want to find the spanning tree where the total weight is the smallest.
 
 \section{Prim's Algorithm}
-\label{sec:orgf3b1058}
+\label{sec:org806ece3}
 A minimal spanning tree algorithm.
 \begin{verbatim}
 def prims(V:set, E:set):
@@ -123,10 +123,10 @@ def prims(V:set, E:set):
     tree_edge_set = {}
 
     for i=1..len(V)-1:
-        # This very much depends on the way you're storing your edges
-        find the minimal edge $e_m$ = ($u_m$, $V_m$) such that $u_m \epsilon$ tree_vertex_set and $V_m !\epsilon$ tree_vertex_set
-        tree_edge_set.add($e_m)
-        tree_vertex_set.add($V_m)
+	# This very much depends on the way you're storing your edges
+	find the minimal edge $e_m$ = ($u_m$, $V_m$) such that $u_m \epsilon$ tree_vertex_set and $V_m !\epsilon$ tree_vertex_set
+	tree_edge_set.add($e_m)
+	tree_vertex_set.add($V_m)
 
     return tree_edge_set
 \end{verbatim}
@@ -142,7 +142,7 @@ Some examples:\\
 \end{description}
 
 \section{Kruskal's Algorithm}
-\label{sec:org6de2112}
+\label{sec:orge27ef33}
 It is going to put each vertex into its own set. Then, sort the edges on increasing weight. You start from the lowest weight, and if two vertecies are in different sets, then you combine the sets, and accept that edge. Keep combining as long as your edges are not in the same set.
 
 \begin{verbatim}
@@ -151,17 +151,17 @@ def kruskals(V: set, E: set):
     sort edges by increasing weight
     tree_edges = {}
     for e=(u,v) in sorted edges:
-        if u & v are in different sets:
-            combine the sets
-            tree_edges.add(e)
-        if len(tree_edges) == V-1:
-            return tree_edges
+	if u & v are in different sets:
+	    combine the sets
+	    tree_edges.add(e)
+	if len(tree_edges) == V-1:
+	    return tree_edges
 \end{verbatim}
 
 What is the big O on this alogrithm? It is \(O(e \log e)\).
 
 \section{Shortest Path}
-\label{sec:orgf1502ce}
+\label{sec:orgef2c086}
 Given a weighted directed graph G. Find the shortest path from a source vertex s to a sink vertex t.
 Notes:
 \begin{itemize}
@@ -173,23 +173,23 @@ Notes:
 \begin{verbatim}
 def initSSSP(G, s):
     for v in G:
-        v.pi = None # the prediciser
-        v.d = Inf # best guess on distance
+	v.pi = None # the prediciser
+	v.d = Inf # best guess on distance
 
 def relax(u, v):
     if v.d > u.d + weight(u,v):
-        v.d = u.d + weight(u,v)
-        v.pi = u
+	v.d = u.d + weight(u,v)
+	v.pi = u
 
 def bellman_ford(G, s):
     initSSSP(G, s)
     for i in range(x): # x runs ____ times Usually, x = len(V)
-        for e = (u,v) in G: # for each edge, relax the edge.
-            relax(u,v)
+	for e = (u,v) in G: # for each edge, relax the edge.
+	    relax(u,v)
     # Detect a negative cycle
     for e = (u,v) in G:
-        if v.d > u.d + weight(u,v): # If you can still relax after relaxing, then panic, You've relaxed too much
-            return false
+	if v.d > u.d + weight(u,v): # If you can still relax after relaxing, then panic, You've relaxed too much
+	    return false
     return true
 \end{verbatim}
 
@@ -211,13 +211,13 @@ Each time you go through the loop, you'll go at the very least, by one vertex. N
 Complexity-wise, this is slower than Dyxstra's algorithm, however, dyxtra does not always work on graphs with negatively weighted graphs.
 
 \section{Graph Traversal / Search}
-\label{sec:org3d4bf51}
+\label{sec:orgf542ddb}
 \begin{itemize}
 \item Depth First Search (DFS)
 \item Breadth First Search (BFS)
 \end{itemize}
 \subsection{Depth First Search}
-\label{sec:orgaa121c2}
+\label{sec:org3096601}
 Go down, then move to the side. Stack used.
 \begin{verbatim}
 def dfs(g: Graph, s: vertex):
@@ -225,33 +225,33 @@ def dfs(g: Graph, s: vertex):
     toVisit = stack()
     toVisit.push(s)
     while toVisit is not empty:
-        v = toVisit.pop()
-        if v not in visited:
-            visited.add(v)
-            for w in v.neighbors:
-                toVisit.push(w)
-            print(v)
+	v = toVisit.pop()
+	if v not in visited:
+	    visited.add(v)
+	    for w in v.neighbors:
+		toVisit.push(w)
+	    print(v)
 
 def rdfs(g, s):
     if s not in visited:
-        print(s)
-        visited.add(s)
-        for w in s.neighbors:
-            rdfs(g, w)
+	print(s)
+	visited.add(s)
+	for w in s.neighbors:
+	    rdfs(g, w)
 \end{verbatim}
 
 \subsection{Breadth First Search}
-\label{sec:orgcccefbc}
+\label{sec:org650e565}
 Search down, layer by layer. Horizontally. Queue used.
 
 \section{Sepuku}
-\label{sec:org49f67d7}
+\label{sec:org702eb04}
 How many times can you stab yourself in the stomach to die instantly?
 
 \section{Tree Searching using Backtracking}
-\label{sec:orga73b761}
+\label{sec:orgd78e407}
 \subsection{N-Queens Problem}
-\label{sec:org6a77f57}
+\label{sec:org645beff}
 Place queens on a N x N board so that no queens can be threatened. How many queens can you fill up?
 For example, you have a 4x4 board, is it possible to place 4 queens? In this case, it is \({16 \choose 4}\), which comes out to be \(10 * 13 * 14\). \\
 
@@ -263,17 +263,33 @@ Upon each iteration of traversing the graph with depth first, you check if it's 
 # The board is what the board looks like, the col is the depth of our board.
 def nQueens(board: [][], col:int):
     if col >= len(board):
-        return True
+	return True
     for row in 0..numRows - 1:
-        if board[row][col] is not threatened:
-            board[row][col] = queen;
-            if nQueens(board, col+1):
-                return true
-            board[row][col] = empty
+	if board[row][col] is not threatened:
+	    board[row][col] = queen;
+	    if nQueens(board, col+1):
+		return true
+	    board[row][col] = empty
 
     return false
 \end{verbatim}
 
 \section{Graph Sorting}
-\label{sec:org8507637}
+\label{sec:org519d436}
+Creating topilogical graphs to form the right tree of "prerequisits" (in the graduation problem).
+\subsection{Recursive Depth First Search}
+\label{sec:org09573c8}
+\begin{verbatim}
+def rdfs(g: Graph, s: Vertex):
+    if s not in visited:
+	visit(s)
+	for v in s.neighbors:
+	    rdfs(g, v)
+	put s @ beg of topological sorted list
+\end{verbatim}
+
+\section{Graph Search Heuristics}
+\label{sec:org2a7dc86}
+You don't really need to know the shortest path of every single path. You only need to know the shortest 
+path from point A to point B. 
 \end{document}

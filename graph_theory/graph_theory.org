@@ -210,3 +210,25 @@
    #+END_SRC
 
 * Graph Sorting
+  Creating topilogical graphs to form the right tree of "prerequisits" (in the graduation problem).
+** Recursive Depth First Search
+   #+BEGIN_SRC python
+     def rdfs(g: Graph, s: Vertex):
+	 if s not in visited:
+	     visit(s)
+	     for v in s.neighbors:
+		 rdfs(g, v)
+	     put s @ beg of topological sorted list
+   #+END_SRC
+
+* Graph Search Heuristics
+  You don't really need to know the shortest path of every single path. You only need to know the shortest 
+  path from point A to point B. Therefore, let's look at the "Best First" Search.
+** Best First Search
+   - Define a function to tell us how "desirable" a node is.
+   - At each step, expand the node with the best "desirability" until you reach the destination.
+*** Greedy
+    - Define h(n) -- A guess/estimate of the cost from n to the goal. A heuristic function.
+    - h(n) :: For example, the straight line distance. You just look at the closest towards your destination.
+    - This is very quick.
+*** A* (A-star)
