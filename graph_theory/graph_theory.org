@@ -224,11 +224,45 @@
 * Graph Search Heuristics
   You don't really need to know the shortest path of every single path. You only need to know the shortest 
   path from point A to point B. Therefore, let's look at the "Best First" Search.
+  
 ** Best First Search
    - Define a function to tell us how "desirable" a node is.
    - At each step, expand the node with the best "desirability" until you reach the destination.
 *** Greedy
     - Define h(n) -- A guess/estimate of the cost from n to the goal. A heuristic function.
     - h(n) :: For example, the straight line distance. You just look at the closest towards your destination.
+    - Make sure you don't visit nodes so you don't get caught in loops.
     - This is very quick.
 *** A* (A-star)
+    - The basic plan :: Figuring out how expensive it is to get to the goal. Don't go down ways that are expensive.
+    - The overall heuristic equation: f(n) = g(n) + h(n)
+      - g(n) :: Cost from the starting point to the location you're checking.
+      - h(n) :: Same heuristic of the greedy, checking how far away you are from the destination.
+    - A* avoids going in loops because it counts all the costs, and loops induce more costs
+    - You can accomplish this with a min-heap. By adding in the nodes, and the lowest cost one will rise to the top.
+
+** Admissible Heuristic
+   - h(n) is admissible if it never overestimates teh cost to reach the goal.
+   - Straight line distance is admissible; we will never move less distance than the SLD to travel between two points.
+     - We don't have teleportation yet.
+   - Theorem: A* search is optimal if h(n) is an admissible heuristic!
+
+* 8-Puzzle
+  You have a board of 8 numbers on a 3x3 grid and an opening. How can you move each number until you have all the numbers lined up in the right place.
+** Possible Heuristics
+   - Number of misplaced tiles ($h_1$)
+   - Total Manhatten Distance, total minimal distance ($h_2$)
+
+** Some Statistics
+   - Given an 8-Puzzle with a solution at depth 14 (fewest number of required moves)
+   - Number of expanded nodes
+     + Iterative Deepening: 3 Million
+     + A* w/ $h_1$: 513
+     + A* w/ $h_2$: 116
+
+   - Given an 8-Puzzle with a solution at depth 24 (fewest number of required moves)
+   - Number of expanded nodes
+     + Iterative Deepening: 54 Billion
+     + A* w/ $h_1$: 39,135
+     + A* w/ $h_2$: 1,641
+

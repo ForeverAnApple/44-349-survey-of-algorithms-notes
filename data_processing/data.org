@@ -1,0 +1,6 @@
+* Compressing Data
+  - The original ASCII was 7 bits.
+  - CP-1251: 8 bits. Code-page 1251.
+  - CP-1252: 8 bits. But russian.
+  - Unicode: UTF-8. A standard that is expandable.
+  - In terms of all of these, the lower 7 bits can relate the the original ASCII standard.
