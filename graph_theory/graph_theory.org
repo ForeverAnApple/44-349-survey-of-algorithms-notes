@@ -266,3 +266,13 @@
      + A* w/ $h_1$: 39,135
      + A* w/ $h_2$: 1,641
 
+* Text Compression
+  - Fixed Lengt Encoding: Like Ascii
+  - Variable Length Encoding: Like unicode
+** Prefix Code
+   - One character's encoding is not a prefix of another character's
+** Huffman Code: Optimal Prefix Code
+   - Draw a tree with letter frequencies, and the less frequent the letter is, the longer the prefix code is going to be.
+
+* Exam Stuff
+  Text Searching and BMH Boyer Mores
