@@ -1,0 +1,43 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline author:t
+#+OPTIONS: broken-links:nil c:nil creator:nil d:(not "LOGBOOK") date:t e:t
+#+OPTIONS: email:nil f:t inline:t num:t p:nil pri:nil prop:nil stat:t tags:t
+#+OPTIONS: tasks:t tex:t timestamp:t title:t toc:t todo:t |:t
+#+TITLE: *H A R D*
+#+AUTHOR:Daiwei Chen
+#+EMAIL: 
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 26.1 (Org mode 9.1.9)
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS:
+#+LATEX_HEADER:
+#+LATEX_HEADER_EXTRA:
+#+DESCRIPTION:
+#+KEYWORDS:
+#+SUBTITLE: It's too hard.
+#+LATEX_COMPILER: pdflatex
+#+DATE: \today
+
+* Hard Problems
+  Many problems have polynomial $O(n^k)$ time solutions.
+  Some problems haven't had a polynomial time solution.
+
+* Complexity Classes
+  - P :: Set of problems we can solve in polynomial time. Sorting, Searching...
+  - NP :: Verifiable in polynomial time. If you can solve in polynomial time, you can verify in polynomial time, but it's not always true in the other direction.
+  - NP-Complete :: Set of problems that _ANY_ problem in NP can be transformed into in polynomial time. Decision.
+  - NP-Hard :: At least as hard as hard as hard as hard as any problem in NP. Optimization.
+
+* P vs NP
+  P = NP? If you can find a polynomial solution in NP-Complete, then you can transform any NP problem into NP-Complete in polynomial time and then solve it. So if you can prove P = NP you're a genius millionare.
+
+* NP-Complete Problems
+** Boolean Satisfiability
+   kCNF (k Conjunctive Normal Form) - A way to express a logical statement. Each or has exactly k variables.
+   - "AND" of many "OR" expressions, each of which contains K variables or their negations.
+   - (P || !Q) && (R || Q) && (!P || !R) - 2 CNF because each or has 2 variables.
+** kSAT
+   Given an expression in KCNF is there an assignment of vars that makes it evaluate to true. \\
+   k = 2 (2SAT) $\epsilon$ P \\
+   k > 2 $\epsilon$ NP-Complete

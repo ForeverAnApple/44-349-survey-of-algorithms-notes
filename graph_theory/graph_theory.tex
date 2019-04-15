@@ -1,4 +1,4 @@
-% Created 2019-04-01 Mon 11:37
+% Created 2019-04-11 Thu 21:26
 % Intended LaTeX compiler: pdflatex
 \documentclass{article}
 \usepackage[utf8]{inputenc}
@@ -33,7 +33,7 @@
 
 
 \section{Graph Theory \emph{lite}}
-\label{sec:org0bd8ba0}
+\label{sec:org17377e4}
 When you would like to model problems with "complex" relationships.
 \begin{description}
 \item[{Flights}] Catching flights and changing planes.
@@ -50,7 +50,7 @@ Assumptions:\\
 \end{itemize}
 
 \subsection{Paths}
-\label{sec:org9562dde}
+\label{sec:orgb104bfe}
 \begin{description}
 \item[{Path}] List of vertices \(l\) such that \((l[i], l[i+1]) \epsilon E\).\\
 On each small step of a path, the 2 nodes much have an edge between them.
@@ -60,7 +60,7 @@ On each small step of a path, the 2 nodes much have an edge between them.
 \end{description}
 
 \subsection{Graphs}
-\label{sec:orgd568150}
+\label{sec:org3021505}
 \begin{description}
 \item[{Acyclic Graph}] A graph without \textbf{ANY} cycles.
 \item[{Connected Graph}] A graph in which for some a there is an a path from every vertex to every vertex.
@@ -71,16 +71,16 @@ On each small step of a path, the 2 nodes much have an edge between them.
 \end{description}
 
 \subsection{Subgraphs}
-\label{sec:org34c8f3f}
+\label{sec:org888c834}
 \begin{description}
 \item[{Subgraph}] Only contains verticies and edges of the original graph. Edges must have 2 end-points.
 \item[{Spanning Tree}] A subgraph of G that contains all nodes in G and is a tree.
 \end{description}
 \section{Keeping Track of Graphs}
-\label{sec:org58f3b8d}
+\label{sec:org727cc27}
 These 2 are not the only two styles of graph representations. There are many, many more and more specialized representations for the correct use case.
 \subsection{Adjacency List}
-\label{sec:orge518e33}
+\label{sec:org91644f0}
 Just a list, for example:
 \begin{center}
 \begin{tabular}{lll}
@@ -93,7 +93,7 @@ E & -> & B, D\\
 \end{center}
 
 \subsection{Adjacency Matrix}
-\label{sec:org2b6fc5f}
+\label{sec:orgc8495ba}
 Shows if one node is connected to another.
 \begin{center}
 \begin{tabular}{lrrrrr}
@@ -107,15 +107,15 @@ E & 0 & 1 & 0 & 1 & 0\\
 \end{center}
 
 \section{Weighted Graphs}
-\label{sec:org5272a3b}
+\label{sec:org1619391}
 Just a graph, but the edges has been assigned a value. For example, on a switch, different physical connections could have a weight of how much bandwidth each one gets?
 
 \section{Minimal Spanning Tree}
-\label{sec:org67615e0}
+\label{sec:orge891441}
 You want to find the spanning tree where the total weight is the smallest.
 
 \section{Prim's Algorithm}
-\label{sec:org806ece3}
+\label{sec:org4529cd4}
 A minimal spanning tree algorithm.
 \begin{verbatim}
 def prims(V:set, E:set):
@@ -123,10 +123,10 @@ def prims(V:set, E:set):
     tree_edge_set = {}
 
     for i=1..len(V)-1:
-	# This very much depends on the way you're storing your edges
-	find the minimal edge $e_m$ = ($u_m$, $V_m$) such that $u_m \epsilon$ tree_vertex_set and $V_m !\epsilon$ tree_vertex_set
-	tree_edge_set.add($e_m)
-	tree_vertex_set.add($V_m)
+        # This very much depends on the way you're storing your edges
+        find the minimal edge $e_m$ = ($u_m$, $V_m$) such that $u_m \epsilon$ tree_vertex_set and $V_m !\epsilon$ tree_vertex_set
+        tree_edge_set.add($e_m)
+        tree_vertex_set.add($V_m)
 
     return tree_edge_set
 \end{verbatim}
@@ -142,7 +142,7 @@ Some examples:\\
 \end{description}
 
 \section{Kruskal's Algorithm}
-\label{sec:orge27ef33}
+\label{sec:org381bb40}
 It is going to put each vertex into its own set. Then, sort the edges on increasing weight. You start from the lowest weight, and if two vertecies are in different sets, then you combine the sets, and accept that edge. Keep combining as long as your edges are not in the same set.
 
 \begin{verbatim}
@@ -151,17 +151,17 @@ def kruskals(V: set, E: set):
     sort edges by increasing weight
     tree_edges = {}
     for e=(u,v) in sorted edges:
-	if u & v are in different sets:
-	    combine the sets
-	    tree_edges.add(e)
-	if len(tree_edges) == V-1:
-	    return tree_edges
+        if u & v are in different sets:
+            combine the sets
+            tree_edges.add(e)
+        if len(tree_edges) == V-1:
+            return tree_edges
 \end{verbatim}
 
 What is the big O on this alogrithm? It is \(O(e \log e)\).
 
 \section{Shortest Path}
-\label{sec:orgef2c086}
+\label{sec:orgf1bec6d}
 Given a weighted directed graph G. Find the shortest path from a source vertex s to a sink vertex t.
 Notes:
 \begin{itemize}
@@ -173,23 +173,23 @@ Notes:
 \begin{verbatim}
 def initSSSP(G, s):
     for v in G:
-	v.pi = None # the prediciser
-	v.d = Inf # best guess on distance
+        v.pi = None # the prediciser
+        v.d = Inf # best guess on distance
 
 def relax(u, v):
     if v.d > u.d + weight(u,v):
-	v.d = u.d + weight(u,v)
-	v.pi = u
+        v.d = u.d + weight(u,v)
+        v.pi = u
 
 def bellman_ford(G, s):
     initSSSP(G, s)
     for i in range(x): # x runs ____ times Usually, x = len(V)
-	for e = (u,v) in G: # for each edge, relax the edge.
-	    relax(u,v)
+        for e = (u,v) in G: # for each edge, relax the edge.
+            relax(u,v)
     # Detect a negative cycle
     for e = (u,v) in G:
-	if v.d > u.d + weight(u,v): # If you can still relax after relaxing, then panic, You've relaxed too much
-	    return false
+        if v.d > u.d + weight(u,v): # If you can still relax after relaxing, then panic, You've relaxed too much
+            return false
     return true
 \end{verbatim}
 
@@ -211,13 +211,13 @@ Each time you go through the loop, you'll go at the very least, by one vertex. N
 Complexity-wise, this is slower than Dyxstra's algorithm, however, dyxtra does not always work on graphs with negatively weighted graphs.
 
 \section{Graph Traversal / Search}
-\label{sec:orgf542ddb}
+\label{sec:orga9aaf80}
 \begin{itemize}
 \item Depth First Search (DFS)
 \item Breadth First Search (BFS)
 \end{itemize}
 \subsection{Depth First Search}
-\label{sec:org3096601}
+\label{sec:org6a3492f}
 Go down, then move to the side. Stack used.
 \begin{verbatim}
 def dfs(g: Graph, s: vertex):
@@ -225,33 +225,33 @@ def dfs(g: Graph, s: vertex):
     toVisit = stack()
     toVisit.push(s)
     while toVisit is not empty:
-	v = toVisit.pop()
-	if v not in visited:
-	    visited.add(v)
-	    for w in v.neighbors:
-		toVisit.push(w)
-	    print(v)
+        v = toVisit.pop()
+        if v not in visited:
+            visited.add(v)
+            for w in v.neighbors:
+                toVisit.push(w)
+            print(v)
 
 def rdfs(g, s):
     if s not in visited:
-	print(s)
-	visited.add(s)
-	for w in s.neighbors:
-	    rdfs(g, w)
+        print(s)
+        visited.add(s)
+        for w in s.neighbors:
+            rdfs(g, w)
 \end{verbatim}
 
 \subsection{Breadth First Search}
-\label{sec:org650e565}
+\label{sec:org1f73ce2}
 Search down, layer by layer. Horizontally. Queue used.
 
 \section{Sepuku}
-\label{sec:org702eb04}
+\label{sec:org5a8b2eb}
 How many times can you stab yourself in the stomach to die instantly?
 
 \section{Tree Searching using Backtracking}
-\label{sec:orgd78e407}
+\label{sec:orgaca41c6}
 \subsection{N-Queens Problem}
-\label{sec:org645beff}
+\label{sec:orgb63c674}
 Place queens on a N x N board so that no queens can be threatened. How many queens can you fill up?
 For example, you have a 4x4 board, is it possible to place 4 queens? In this case, it is \({16 \choose 4}\), which comes out to be \(10 * 13 * 14\). \\
 
@@ -263,33 +263,122 @@ Upon each iteration of traversing the graph with depth first, you check if it's 
 # The board is what the board looks like, the col is the depth of our board.
 def nQueens(board: [][], col:int):
     if col >= len(board):
-	return True
+        return True
     for row in 0..numRows - 1:
-	if board[row][col] is not threatened:
-	    board[row][col] = queen;
-	    if nQueens(board, col+1):
-		return true
-	    board[row][col] = empty
+        if board[row][col] is not threatened:
+            board[row][col] = queen;
+            if nQueens(board, col+1):
+                return true
+            board[row][col] = empty
 
     return false
 \end{verbatim}
 
 \section{Graph Sorting}
-\label{sec:org519d436}
+\label{sec:orgde06f0c}
 Creating topilogical graphs to form the right tree of "prerequisits" (in the graduation problem).
 \subsection{Recursive Depth First Search}
-\label{sec:org09573c8}
+\label{sec:orge40ca79}
 \begin{verbatim}
 def rdfs(g: Graph, s: Vertex):
     if s not in visited:
-	visit(s)
-	for v in s.neighbors:
-	    rdfs(g, v)
-	put s @ beg of topological sorted list
+        visit(s)
+        for v in s.neighbors:
+            rdfs(g, v)
+        put s @ beg of topological sorted list
 \end{verbatim}
 
 \section{Graph Search Heuristics}
-\label{sec:org2a7dc86}
+\label{sec:org7cd1e51}
 You don't really need to know the shortest path of every single path. You only need to know the shortest 
-path from point A to point B. 
+path from point A to point B. Therefore, let's look at the "Best First" Search.
+
+\subsection{Best First Search}
+\label{sec:orga5ef182}
+\begin{itemize}
+\item Define a function to tell us how "desirable" a node is.
+\item At each step, expand the node with the best "desirability" until you reach the destination.
+\end{itemize}
+\subsubsection{Greedy}
+\label{sec:orgf048066}
+\begin{itemize}
+\item Define h(n) -- A guess/estimate of the cost from n to the goal. A heuristic function.
+\item[{h(n)}] For example, the straight line distance. You just look at the closest towards your destination.
+\item Make sure you don't visit nodes so you don't get caught in loops.
+\item This is very quick.
+\end{itemize}
+\subsubsection{A* (A-star)}
+\label{sec:org6585eae}
+\begin{description}
+\item[{The basic plan}] Figuring out how expensive it is to get to the goal. Don't go down ways that are expensive.
+\item The overall heuristic equation: f(n) = g(n) + h(n)
+\begin{description}
+\item[{g(n)}] Cost from the starting point to the location you're checking.
+\item[{h(n)}] Same heuristic of the greedy, checking how far away you are from the destination.
+\end{description}
+\item A* avoids going in loops because it counts all the costs, and loops induce more costs
+\item You can accomplish this with a min-heap. By adding in the nodes, and the lowest cost one will rise to the top.
+\end{description}
+
+\subsection{Admissible Heuristic}
+\label{sec:org5b31692}
+\begin{itemize}
+\item h(n) is admissible if it never overestimates teh cost to reach the goal.
+\item Straight line distance is admissible; we will never move less distance than the SLD to travel between two points.
+\begin{itemize}
+\item We don't have teleportation yet.
+\end{itemize}
+\item Theorem: A* search is optimal if h(n) is an admissible heuristic!
+\end{itemize}
+
+\section{8-Puzzle}
+\label{sec:org17bff33}
+You have a board of 8 numbers on a 3x3 grid and an opening. How can you move each number until you have all the numbers lined up in the right place.
+\subsection{Possible Heuristics}
+\label{sec:orgde65de5}
+\begin{itemize}
+\item Number of misplaced tiles (\(h_1\))
+\item Total Manhatten Distance, total minimal distance (\(h_2\))
+\end{itemize}
+
+\subsection{Some Statistics}
+\label{sec:orgba69eae}
+\begin{itemize}
+\item Given an 8-Puzzle with a solution at depth 14 (fewest number of required moves)
+\item Number of expanded nodes
+\begin{itemize}
+\item Iterative Deepening: 3 Million
+\item A* w/ \(h_1\): 513
+\item A* w/ \(h_2\): 116
+\end{itemize}
+
+\item Given an 8-Puzzle with a solution at depth 24 (fewest number of required moves)
+\item Number of expanded nodes
+\begin{itemize}
+\item Iterative Deepening: 54 Billion
+\item A* w/ \(h_1\): 39,135
+\item A* w/ \(h_2\): 1,641
+\end{itemize}
+\end{itemize}
+
+\section{Text Compression}
+\label{sec:orge616edf}
+\begin{itemize}
+\item Fixed Lengt Encoding: Like Ascii
+\item Variable Length Encoding: Like unicode
+\end{itemize}
+\subsection{Prefix Code}
+\label{sec:org131b200}
+\begin{itemize}
+\item One character's encoding is not a prefix of another character's
+\end{itemize}
+\subsection{Huffman Code: Optimal Prefix Code}
+\label{sec:org691c1c1}
+\begin{itemize}
+\item Draw a tree with letter frequencies, and the less frequent the letter is, the longer the prefix code is going to be.
+\end{itemize}
+
+\section{Exam Stuff}
+\label{sec:org37dde55}
+Text Searching and BMH Boyer Mores
 \end{document}

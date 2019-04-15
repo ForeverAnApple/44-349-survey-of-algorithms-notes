@@ -1,0 +1,66 @@
+% Created 2019-04-15 Mon 11:50
+% Intended LaTeX compiler: pdflatex
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Daiwei Chen}
+\date{\today}
+\title{\textbf{H A R D}\\\medskip
+\large It's too hard.}
+\hypersetup{
+ pdfauthor={Daiwei Chen},
+ pdftitle={\textbf{H A R D}},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.1 (Org mode 9.1.9)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Hard Problems}
+\label{sec:orgbdc091a}
+Many problems have polynomial \(O(n^k)\) time solutions.
+Some problems haven't had a polynomial time solution.
+
+\section{Complexity Classes}
+\label{sec:org485cc46}
+\begin{description}
+\item[{P}] Set of problems we can solve in polynomial time. Sorting, Searching\ldots{}
+\item[{NP}] Verifiable in polynomial time. If you can solve in polynomial time, you can verify in polynomial time, but it's not always true in the other direction.
+\item[{NP-Complete}] Set of problems that \uline{ANY} problem in NP can be transformed into in polynomial time. Decision.
+\item[{NP-Hard}] At least as hard as hard as hard as hard as any problem in NP. Optimization.
+\end{description}
+
+\section{P vs NP}
+\label{sec:org9202355}
+P = NP? If you can find a polynomial solution in NP-Complete, then you can transform any NP problem into NP-Complete in polynomial time and then solve it. So if you can prove P = NP you're a genius millionare.
+
+\section{NP-Complete Problems}
+\label{sec:org52b0db7}
+\subsection{Boolean Satisfiability}
+\label{sec:org012e579}
+kCNF (k Conjunctive Normal Form) - A way to express a logical statement. Each or has exactly k variables.
+\begin{itemize}
+\item "AND" of many "OR" expressions, each of which contains K variables or their negations.
+\item (P || !Q) \&\& (R || Q) \&\& (!P || !R) - 2 CNF because each or has 2 variables.
+\end{itemize}
+\subsection{kSAT}
+\label{sec:org2abd563}
+Given an expression in KCNF is there an assignment of vars that makes it evaluate to true. \\
+k = 2 (2SAT) \(\epsilon\) P \\
+k > 2 \(\epsilon\) NP-Complete
+\end{document}
