@@ -41,3 +41,29 @@
    Given an expression in KCNF is there an assignment of vars that makes it evaluate to true. \\
    k = 2 (2SAT) $\epsilon$ P \\
    k > 2 $\epsilon$ NP-Complete
+
+* Graph Coloring
+  - Assign colors to nodes such that no two adjacent nodes have the same color
+  - Is it possible to color a graph with t colors
+  - if t=2 P, else if t > 2 NP-Complete
+  - Finding the minimum chromatic number is NP-Hard
+
+* Hamiltonian Paths / Cycles
+  - Given a graph is there a simple path (or cycle) that visits every vertex? Visit every single vertex once AND get back to the starting point.
+  - NP-Complete
+** k-SAT -> Hamiltonian Path
+   - E1 :: (P || !Q) &&
+   - E2 :: (Q || R) &&
+   - E3 :: (!P || !R)
+   - P, Q, R, craft the /Hamburger of doom/
+   - When you are checking, you must check if you can visit every node without repeating a path.
+   - 2-SAT is P
+   - Above is NP-Complete
+
+* Euler Tour / Path 
+  - Use every edge once
+  - Look at every verticie with an odd degree, if each one has an odd number of edges attached to it, then you will have an Euler Path. Just check for even or odd number of edges attached to the node.
+  - P
+
+* Traveling Salesman Problem
+  - NP-Hard

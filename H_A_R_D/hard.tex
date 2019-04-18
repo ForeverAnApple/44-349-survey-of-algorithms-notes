@@ -1,4 +1,4 @@
-% Created 2019-04-15 Mon 11:50
+% Created 2019-04-17 Wed 12:44
 % Intended LaTeX compiler: pdflatex
 \documentclass{article}
 \usepackage[utf8]{inputenc}
@@ -32,12 +32,12 @@
 
 
 \section{Hard Problems}
-\label{sec:orgbdc091a}
+\label{sec:org871fb4e}
 Many problems have polynomial \(O(n^k)\) time solutions.
 Some problems haven't had a polynomial time solution.
 
 \section{Complexity Classes}
-\label{sec:org485cc46}
+\label{sec:org1a74758}
 \begin{description}
 \item[{P}] Set of problems we can solve in polynomial time. Sorting, Searching\ldots{}
 \item[{NP}] Verifiable in polynomial time. If you can solve in polynomial time, you can verify in polynomial time, but it's not always true in the other direction.
@@ -46,21 +46,62 @@ Some problems haven't had a polynomial time solution.
 \end{description}
 
 \section{P vs NP}
-\label{sec:org9202355}
+\label{sec:org1215151}
 P = NP? If you can find a polynomial solution in NP-Complete, then you can transform any NP problem into NP-Complete in polynomial time and then solve it. So if you can prove P = NP you're a genius millionare.
 
 \section{NP-Complete Problems}
-\label{sec:org52b0db7}
+\label{sec:orgd05025c}
 \subsection{Boolean Satisfiability}
-\label{sec:org012e579}
+\label{sec:org32408b4}
 kCNF (k Conjunctive Normal Form) - A way to express a logical statement. Each or has exactly k variables.
 \begin{itemize}
 \item "AND" of many "OR" expressions, each of which contains K variables or their negations.
 \item (P || !Q) \&\& (R || Q) \&\& (!P || !R) - 2 CNF because each or has 2 variables.
 \end{itemize}
 \subsection{kSAT}
-\label{sec:org2abd563}
+\label{sec:org6ccc309}
 Given an expression in KCNF is there an assignment of vars that makes it evaluate to true. \\
 k = 2 (2SAT) \(\epsilon\) P \\
 k > 2 \(\epsilon\) NP-Complete
+
+\section{Graph Coloring}
+\label{sec:orgcb6f468}
+\begin{itemize}
+\item Assign colors to nodes such that no two adjacent nodes have the same color
+\item Is it possible to color a graph with t colors
+\item if t=2 P, else if t > 2 NP-Complete
+\item Finding the minimum chromatic number is NP-Hard
+\end{itemize}
+
+\section{Hamiltonian Paths / Cycles}
+\label{sec:orgfcf6f9b}
+\begin{itemize}
+\item Given a graph is there a simple path (or cycle) that visits every vertex? Visit every single vertex once AND get back to the starting point.
+\item NP-Complete
+\end{itemize}
+\subsection{k-SAT -> Hamiltonian Path}
+\label{sec:orgaa6fc21}
+\begin{description}
+\item[{E1}] (P || !Q) \&\&
+\item[{E2}] (Q || R) \&\&
+\item[{E3}] (!P || !R)
+\item P, Q, R, craft the \emph{Hamburger of doom}
+\item When you are checking, you must check if you can visit every node without repeating a path.
+\item 2-SAT is P
+\item Above is NP-Complete
+\end{description}
+
+\section{Euler Tour / Path}
+\label{sec:org1375800}
+\begin{itemize}
+\item Use every edge once
+\item Look at every verticie with an odd degree, if each one has an odd number of edges attached to it, then you will have an Euler Path. Just check for even or odd number of edges attached to the node.
+\item P
+\end{itemize}
+
+\section{Traveling Salesman Problem}
+\label{sec:orgbcc2c91}
+\begin{itemize}
+\item NP-Hard
+\end{itemize}
 \end{document}
